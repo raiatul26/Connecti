@@ -1,0 +1,243 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#posts-home{
+	display: flex;
+	justify-content: space-evenly;
+	padding-top: 10px;
+
+	.groups {
+		width: 21%;
+		border: 2px solid rgba(122, 224, 240, 0.8);
+		border-radius: 15px;
+		box-shadow: inset 0 0 104px -13px rgba(122, 224, 240, 0.8);
+		height: 600px;
+
+		.groups-title {
+			color:white;
+			background : #f8af32;
+			display:flex;
+			font-size:17px;
+			justify-content :center;
+			align-items: center;
+			height:40px;
+			border-radius: 15px 15px 0 0;
+		}
+	}
+
+	.wall{
+		width: 55%;
+
+		.wall-title {
+			// position: fixed;
+			// width: 55%;
+			color:white;
+			background : #f8af32;
+			display:flex;
+			font-size:17px;
+			justify-content :center;
+			align-items: center;
+			height:40px;
+			border-radius: 15px 15px 0 0;
+
+		}
+
+		.new-post-form{
+			display: flex;
+			justify-content: center;
+			box-shadow: 0 0 57px -23px #57c5d6;
+			align-items: center;
+
+			form{
+				// height: 240px;
+				// width: 85%;
+				display: flex;
+				flex-direction: column;
+				width: 90%;
+				padding-top: 20px;
+				padding-bottom: 20px;
+
+				label{
+					height: 40px;
+    				border: 0;
+    				padding-left :10px;
+    				display:flex;
+    				flex-direction:column;
+    				justify-content:center;
+    				padding-left : 10px;
+    				color: white;
+    				font-size:17px;
+    				border-radius: 10px 10px 0px 0px;
+    				background: #3677a2;
+				}
+
+				textarea{
+					margin : 20px 30px 20px 30px;
+					padding : 10px;
+					background : #FDF6F9;
+					font-family: sans-serif;
+					font-size: 14px;
+					border-radius : 10px;
+ 
+				}
+				textarea:focus, input:focus{
+    				outline: none;
+				}
+
+				input{
+					height: 40px;
+    				border: 0;
+    				color: white;
+    				font-size:15px;
+    				padding :8px;
+    				border-radius: 0px 0px 10px 10px;
+    				background: #4CAF50
+				}
+
+				// #post_content{
+				// 	height: 65%;
+				// 	border-radius: 10px;
+				// }
+			}
+		}
+
+		.display-posts{
+			display: flex;
+			flex-direction: column;
+			.post{
+				border: 2px solid rgb(69, 130, 216);
+				margin: 10px;
+				// box-shadow: 0 0 37px -23px rgba(0, 0, 0, 0.8);
+				box-shadow: 0 0 44px -13px rgba(69, 130, 216, 0.8);
+				border-radius: 10px;
+				display: flex;
+				flex-direction: column;
+
+				.post-content {
+					border: 2px solid #70c46b;
+					border-radius: 10px;
+					padding: 10px;
+					background-color: #cbf4c8;
+				}
+
+				.post-header{
+					order: -1;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					padding-top: 10px;
+					padding-bottom: 15px;
+					.logo{
+						display: flex;
+						align-items: center;
+						img {
+							margin-left: 20px;
+							margin-right: 20px;
+						}
+					}
+					a {
+						text-decoration: none;
+						padding: 5px;
+						border: 1px solid tomato;
+						border-radius: 2px;
+						margin-right: 20px;
+						background-color: tomato;
+						color: white;
+					}
+					a:hover{
+						background-color: white;
+						border: 1px solid tomato;
+						color: red;
+					}
+				}
+
+				.like-tab{
+					display: flex;
+					align-items: center;
+					justify-content: space-around;
+					a{
+						text-decoration: none;
+						padding: 5px;
+						border-radius: 2px;
+						background-color: #594fdd;
+						color: white;
+					}
+					a:hover{
+						background-color: white;
+						color: #594fdd;
+						border: 1px solid #594fdd;
+					}
+				}
+
+				p{
+					margin: 10px 16px;
+				}
+
+				.comment-section {
+					display: flex;
+					justify-content: center;
+					flex-direction: column;
+					margin-left: 20px;
+					margin-right: 20px;
+					form {
+						display: flex;
+						flex-direction: column;
+					}
+					ul{
+						list-style-type: none;
+						padding-left: 0;
+						.show-comment {
+							border: 1px solid skyblue;
+							margin: 5px 0;
+							padding: 5px;
+							border-radius: 5px;
+							background-color: #b5f2f4;
+							display: flex;
+							justify-content: space-between;
+							align-items: center;
+							a {
+								text-decoration: none;
+								padding: 5px;
+								border: 1px solid tomato;
+								border-radius: 2px;
+								margin-right: 20px;
+								background-color: white;
+								color: tomato;
+							}
+							a:hover{
+								background-color: tomato;
+								color: white;
+							}
+							h5 {
+								padding: 5px;
+								margin: 0;
+							}
+						}
+					}
+					
+				}
+			}
+		}
+
+		
+	}
+
+	.friends {
+		width: 21%;
+		border: 2px solid rgba(122, 224, 240, 0.8);
+		border-radius: 15px;
+		height: 1000px;
+
+		.friends-title {
+			color:white;
+			background : #f8af32;
+			display:flex;
+			font-size:17px;
+			justify-content :center;
+			align-items: center;
+			height:40px;
+			border-radius: 15px 15px 0 0;
+		}
+	}
+}

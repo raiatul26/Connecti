@@ -1,0 +1,90 @@
+<main id="posts-home">
+	
+	<% if user_signed_in? %>
+		<div class="groups">
+			<div class="groups-title">Group Links</div>
+		</div>
+	<% end %>
+
+	<div class="wall">
+		<div class="wall-title">Posts</div>
+		<div class="new-post-form">
+			<% if user_signed_in? %>
+				<%= form_for @post do |f|%>
+					
+				    <%= f.label :content %>
+				    <%= f.text_area :content %>
+				   
+
+				    <%= f.submit %>
+				<%end%>
+			<%end%>
+	    </div>
+	    <div class="display-posts">
+	    	<% @posts.reverse.each do |p| %>
+	    	<div class="post">
+		    	<p class="post-content"><%= p.content %></p>
+		    	<div class="post-header">
+		    		<div class="logo">
+			    		<img width="35" src="http://mddaonline.in/resources/images/default_profile_icon.png" >
+			    		<span><strong><%= p.user.email %></strong></span>
+		    		</div>
+		    		<% if user_signed_in? && p.user_id == current_user.id %>
+			    		<p><%= link_to "Delete", destroy_post_path(p), method: :delete  %></p>
+			    	<% end %>
+		    	</div>
+		    	<div class="like-tab">
+			    	<p>Likes&nbsp;:&nbsp;<%= p.likes.length%></p>
+			    	<% if user_signed_in? %>
+				    	<p>
+				    		<%= link_to p.like_status_string(current_user.id), toggle_like_path(p.id), method: :post  %>
+				    	</p>
+			    	<% end %>
+		    	</div>
+
+		    	<div class="comment-section">
+		    		
+					<% if user_signed_in? %>
+						<h4>Add Comment</h4>
+						<%= form_for @comment do |f| %>
+
+							<%= f.text_area :comment %>
+
+							<%= f.hidden_field :post_id, value: p.id %>
+							<%= f.hidden_field :user_id, value: current_user.id %>
+
+							<%= f.submit %>
+						<% end %>
+					<% end %>
+				
+					<ul>
+						<h4>Comments:</h4>
+						<% p.comments.reverse.each do |comment| %>
+							<div class="show-comment">
+								<div>
+									<li><h5><%= comment.comment %></h5></li>
+									<sub>---&nbsp;<%= comment.user.email %></sub>
+								</div>
+								<% if user_signed_in? && current_user.id == comment.user_id %>
+								<%= link_to 'Delete', destroy_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+								<% end %>
+							</div>
+						<% end %>
+					</ul>
+				</div>
+			</div>	
+		    <% end %>
+	    </div>
+
+	</div>
+
+	<% if user_signed_in? %>
+		<div class="friends">
+			<div class="friends-title">Friends</div>
+		</div>
+	<% end %>
+
+
+	
+
+</main>
