@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
 	belongs_to :user
 	has_many :comments, dependent: :destroy
-	has_many :likes, dependent: :destroy
+	has_many :likes, dependent: :destroy, as: :liked
 
 	# returns true if user can like this post
 	def user_can_like(user_id)

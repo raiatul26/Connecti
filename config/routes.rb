@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   post 'likes/toggle/:post_id', to: 'likes#toggle', as: 'toggle_like'
+  post 'likes/togglec/:comment_id', to: 'likes#togglec', as: 'togglec_like'
 
   post 'comments/create', as: 'comments'
   delete 'comments/:id', to: 'comments#destroy', as: 'destroy_comment'
