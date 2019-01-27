@@ -1,8 +1,19 @@
+<!-- rbenv 2.5.0-dev -->
+
 <main id="posts-home">
 	
 	<% if user_signed_in? %>
 		<div class="groups">
 			<div class="groups-title">Group Links</div>
+			<% @all_users.each do |user| %>
+			  <div class="user">
+			    <p>
+			      <strong><%=h user %></strong>
+			      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+			      <div class="clear"></div>
+			    </p>
+			  </div>
+			<% end %>
 		</div>
 	<% end %>
 
@@ -10,7 +21,7 @@
 		<div class="wall-title">Posts</div>
 		<div class="new-post-form">
 			<% if user_signed_in? %>
-				<%= form_for @post do |f|%>
+				<%= form_for @post, remote: true do |f|%>
 					
 				    <%= f.label :content %>
 				    <%= f.text_area :content %>
@@ -20,65 +31,9 @@
 				<%end%>
 			<%end%>
 	    </div>
-	    <div class="display-posts">
+	    <div class="display-posts" id="posts-list">
 	    	<% @posts.reverse.each do |p| %>
-	    	<div class="post">
-		    	<p class="post-content"><%= p.content %></p>
-		    	<div class="post-header">
-		    		<div class="logo">
-			    		<img width="35" src="http://mddaonline.in/resources/images/default_profile_icon.png" >
-			    		<span><strong><%= p.user.email %></strong></span>
-		    		</div>
-		    		<% if user_signed_in? && p.user_id == current_user.id %>
-			    		<p><%= link_to "Delete", destroy_post_path(p), method: :delete  %></p>
-			    	<% end %>
-		    	</div>
-		    	<div class="like-tab">
-			    	<p>Likes&nbsp;:&nbsp;<%= p.likes.length%></p>
-			    	<% if user_signed_in? %>
-				    	<p>
-				    		<%= link_to p.like_status_string(current_user.id), toggle_like_path(p.id), method: :post  %>
-				    	</p>
-			    	<% end %>
-		    	</div>
-
-		    	<div class="comment-section">
-		    		
-					<% if user_signed_in? %>
-						<h4>Add Comment</h4>
-						<%= form_for @comment do |f| %>
-
-							<%= f.text_area :comment %>
-
-							<%= f.hidden_field :post_id, value: p.id %>
-							<%= f.hidden_field :user_id, value: current_user.id %>
-
-							<%= f.submit %>
-						<% end %>
-					<% end %>
-				
-					<ul>
-						<h4>Comments:</h4>
-						<% p.comments.reverse.each do |comment| %>
-							<div class="show-comment">
-								<div>
-									<li><h5><%= comment.comment %></h5></li>
-									<sub>---&nbsp;<%= comment.user.email %></sub>
-								</div>  
-								<p>Likes&nbsp;:&nbsp;<%= comment.likes.length%></p>
-								<div class="comment-options">
-									<% if user_signed_in? %>
-										<%= link_to comment.like_status_string(current_user.id), togglec_like_path(comment.id), method: :post %>
-									<% end %>
-									<% if user_signed_in? && current_user.id == comment.user_id %>
-										<%= link_to 'Delete', destroy_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %>
-									<% end %>
-								</div>
-							</div>
-						<% end %>
-					</ul>
-				</div>
-			</div>	
+	    		<%= render 'post', p: p %>	
 		    <% end %>
 	    </div>
 
@@ -87,10 +42,27 @@
 	<% if user_signed_in? %>
 		<div class="friends">
 			<div class="friends-title">Friends</div>
+			<input id="user-search" type="text" placeholder="Search...">
 		</div>
 	<% end %>
-
-
+	<script type="text/javascript">
+	{
+		var users = <%= "#{@all_users}".html_safe %>;
+		var user_ids = <%= "#{@user_ids}".html_safe %>;
+		 $( "#user-search" ).autocomplete({
+		      source: users,
+		      select: function( event, ui ) {
+		      	 console.log(event);
+		      	 console.log(ui.item);
+		      	 $( "#user-search" ).val(ui.item.value);
+		      	 console.log(user_ids[users.indexOf(ui.item.value)]);
+		      	// console.log(user_ids[]);
+		      	
+		      	window.location = '/users/profile/' + user_ids[users.indexOf(ui.item.value)];
+		      }
+		    });
+	}
 	
+	</script>
 
 </main>

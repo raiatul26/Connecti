@@ -20,7 +20,7 @@ class LikesController < ApplicationController
       @post.likes.first.destroy
   	end
 
-  	redirect_to root_path
+  	# redirect_to root_path
 
   end
 
@@ -33,7 +33,7 @@ class LikesController < ApplicationController
       @comment.likes.first.destroy
     end
     
-    redirect_to root_path
+    # redirect_to root_path
   end
 
 end

@@ -1,0 +1,4 @@
+console.log("new post");
+
+var newPost = $('<%= escape_javascript render "post", p: @post %>');
+$('#posts-list').prepend(newPost);

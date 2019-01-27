@@ -1,0 +1,17 @@
+<div class="show-comment" id="comment-<%= comment.id %>">
+	<div>
+		<li><h5><%= comment.comment %></h5></li>
+		<sub>---&nbsp;<%= comment.user.email %></sub>
+	</div>  
+	
+	<div class="comment-options">
+		<% if user_signed_in? %>
+			<p id="comment-<%= comment.id %>-likes">
+				<%= render 'comments/comment_like_link', comment: comment %>
+			</p>
+		<% end %>
+		<% if user_signed_in? && current_user.id == comment.user_id %>
+			<%= link_to 'Delete', destroy_comment_path(comment), method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+	</div>
+</div>

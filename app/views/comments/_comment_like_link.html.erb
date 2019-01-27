@@ -1,0 +1,4 @@
+<span>
+	<span>Likes&nbsp;:&nbsp;<%= comment.likes.length%></span>
+	<%= link_to comment.like_status_string(current_user.id), togglec_like_path(comment.id), method: :post, remote: true %>
+</span>

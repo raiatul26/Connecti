@@ -146,6 +146,7 @@
 						margin-right: 20px;
 						background-color: tomato;
 						color: white;
+						
 					}
 					a:hover{
 						background-color: white;
@@ -165,6 +166,7 @@
 						background-color: #594fdd;
 						color: white;
 					}
+				
 					a:hover{
 						background-color: white;
 						color: #594fdd;
@@ -291,4 +293,14 @@
 			border-radius: 15px 15px 0 0;
 		}
 	}
+
+
+	// @media screen, print, speech and (min-width: 480px){
+	// 	.friends, .groups{
+	// 		display: none;
+	// 	}
+	// 	.wall{
+	// 		width: 80%;
+	// 	}
+	// }
 }

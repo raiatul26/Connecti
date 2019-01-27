@@ -1,0 +1,6 @@
+console.log("this js file called");
+
+var commentsListContainer = $("#post-comment-list-<%= @new_comment.post_id %>");
+var comments = "<%= escape_javascript render 'comments/comment', comment: @new_comment %>" ;
+
+commentsListContainer.prepend(comments);

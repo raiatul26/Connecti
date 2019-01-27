@@ -1,0 +1,5 @@
+
+<span>
+	<span>Likes&nbsp;:&nbsp;<%= p.likes.length%></span>
+	<%= link_to p.like_status_string(current_user.id), toggle_like_path(p.id), method: :post, remote: true  %>
+</span>

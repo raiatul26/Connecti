@@ -36,16 +36,19 @@ body {
 			color: blue;
 		}
 
-		.auth-info-links{
+		#auth-info-links{
 			width: 25%;
 			text-align: right;
 
 			display: flex;
+			flex-direction: row;
 			justify-content: flex-end;
 
 			p:first-child{
 				margin-right: 15px;
+				// margin-left: 115px;
 			}
 		}
 	}
 }
+

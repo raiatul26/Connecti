@@ -1,0 +1,12 @@
+console.log("clike toggle called");
+// console.log('#comment-<%= @comment.id %>-likes');
+var newLike = $('<%= escape_javascript render "comments/comment_like_link", comment: @comment %>');
+
+$('#comment-<%= @comment.id %>-likes').html(newLike);
+
+new Noty({
+    text: 'Like Status Changed!',
+    theme: 'relax',
+    type: 'success',
+    layout: 'topRight'
+}).show();

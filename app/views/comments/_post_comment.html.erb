@@ -1,0 +1,22 @@
+<div class="comment-section">
+		
+	<% if user_signed_in? %>
+		<h4>Add Comment</h4>
+		<%= form_for @comment,remote: true do |f| %>
+
+			<%= f.text_area :comment %>
+
+			<%= f.hidden_field :post_id, value: p.id %>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+
+			<%= f.submit %>
+		<% end %>
+	<% end %>
+
+	<h4>Comments</h4>
+	<ul id="post-comment-list-<%= p.id %>">
+		<% p.comments.reverse.each do |comment| %>
+			<%= render 'comments/comment', comment: comment %>
+		<% end %>
+	</ul>
+</div>

@@ -1,0 +1,23 @@
+<div class="post" id="post-<%= p.id %>">
+	<p class="post-content"><%= p.content %></p>
+	<div class="post-header">
+		<div class="logo">
+    		<img width="35" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt4ZX-6Vwf6WMCgQPGmIs4LoaGbg3ZZb-8AOeFS_qnY4duyfap" >
+    		<span><strong><%= p.user.email %></strong></span>
+		</div>
+		<% if user_signed_in? && p.user_id == current_user.id %>
+    		<p><%= link_to "Delete", destroy_post_path(p), method: :delete, remote: true  %></p>
+    	<% end %>
+	</div>
+	<div class="like-tab">
+    	
+    	<% if user_signed_in? %>
+	    	<p id="post-<%= p.id %>-likes">
+	    		<%= render 'post_like_link', p: p %>
+	    	</p>
+    	<% end %>
+	</div>
+
+	<%= render 'comments/post_comment', p:p %>
+
+</div>

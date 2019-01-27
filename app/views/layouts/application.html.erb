@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <title>Connecti</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta  name="viewport" content="width=device-width, initial-scale=1.0">
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+
   </head>
 
   <body>
     <div id="common-header">
       <div class = "logo">
         <!-- <img src="http://brandmark.io/logo-rank/random/bp.png"> -->
-        <img width="95" src="https://www.seoclerk.com/pics/551103-1TOqFD1502285018.jpg">
+        <!-- <img width="95" src="https://www.seoclerk.com/pics/551103-1TOqFD1502285018.jpg"> -->
+        <img width="195" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv13YzhqOvDK-hMv-QZxDMsN7V_hEk4Vbx43jahGoHsBOR8y5B">
       </div>
       <h1>CONNECTi</h1>
       <div id="auth-info-links">
@@ -26,7 +36,11 @@
         <% end %>
       </div>
     </div>
+    <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
 
     <%= yield %>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
   </body>
 </html>

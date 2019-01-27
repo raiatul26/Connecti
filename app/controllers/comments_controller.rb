@@ -4,13 +4,17 @@ class CommentsController < ApplicationController
 	before_action :authorize_user, only: [:destroy]
 
   def create
-  	comment = Comment.create(comment: params[:comment][:comment], user_id: current_user.id, post_id: params[:comment][:post_id])
-  	redirect_to root_path
+  	@new_comment = Comment.create(comment: params[:comment][:comment], user_id: current_user.id, post_id: params[:comment][:post_id])
+  	# UserMailer.new_comment(@new_comment.id).deliver_now
+    # NewCommentEmailWorker.perform(@new_comment.id)
+    Resque.enqueue(NewCommentEmailWorker, @new_comment.id)
+    # redirect_to root_path
   end
 
   def destroy
+    @comment_id = @comment.id;
   	@comment.destroy
-  	redirect_to request.referrer
+  	# redirect_to request.referrer
   end
 
   private
